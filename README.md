@@ -1,11 +1,11 @@
 # Pulumi-tutorial
 how to use pulumi step by step
 
-[lv.0](#lv0)  
-[lv.1](#lv1)  
-[lv.2](#lv2)  
-[lv.3](#lv3)  
-[With Copilot](#WithCopilot)  
+[lv.0](#lv0--get-started)  
+[lv.1](#lv1--deploy-static-html)  
+[lv.2](#lv2--containers-on-ecs-fargate)  
+[lv.3](#lv3--deploy-a-webserver-to-aws-ec2)  
+[With Copilot](#with-copilot)  
 
 ## lv.0 : Get Started
 ```zsh
