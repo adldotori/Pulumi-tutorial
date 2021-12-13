@@ -9,11 +9,11 @@ how to use pulumi step by step
 
 ## lv.0 : Get Started
 ```zsh
-$ brew install pulumi ; install pulumi
+$ brew install pulumi # install pulumi
 $ export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
 $ export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
-$ mkdir lv.0 && cd lv.0 ; make new folder
-$ pulumi new aws-python ; creating a new Pulumi project
+$ mkdir lv.0 && cd lv.0 # make new folder
+$ pulumi new aws-python # creating a new Pulumi project
 ```
 
 ### \_\_main\_\_.py
