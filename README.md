@@ -9,13 +9,50 @@ how to use pulumi step by step
 
 ## lv.0 : Get Started
 ```zsh
-$ pulumi new aws-python
+$ brew install pulumi ; install pulumi
+$ export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
+$ export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
+$ mkdir lv.0 && cd lv.0 ; make new folder
+$ pulumi new aws-python ; creating a new Pulumi project
+```
+
+### \_\_main\_\_.py
+```python
+import pulumi
+from pulumi_aws import s3
+
+# Create an AWS resource (S3 Bucket)
+bucket = s3.Bucket('my-bucket')
+
+# Export the name of the bucket
+pulumi.export('bucket_name',  bucket.id)
+```
+```
+$ pulumi up ; deploy your stack
+```
+Now that your bucket has been provisioned
+```zsh
+$ pulumi stack
 ```
 ```zsh
-$ pulumi up
+Current stack is dev:
+    Owner: adldotori
+    Last updated: 8 seconds ago (2021-12-13 13:02:36.022555 +0900 KST)
+    Pulumi version: v3.19.0
+Current stack resources (3):
+    TYPE                     NAME
+    pulumi:pulumi:Stack      lv.0-dev
+    ├─ aws:s3/bucket:Bucket  my-bucket
+    └─ pulumi:providers:aws  default_4_32_0
+
+Current stack outputs (1):
+    OUTPUT       VALUE
+    bucket_name  my-bucket-b286cda
+
 ```
 
 ## lv.1 : Deploy Static HTML
+### \_\_main\_\_.py
 ```python
 """An AWS Python Pulumi program"""
 
@@ -41,6 +78,8 @@ bucketObject = s3.BucketObject(
 
 pulumi.export('bucket_endpoint', pulumi.Output.concat('http://', bucket.website_endpoint))
 ```
+You can check out your new static website.
+
 test url : [http://my-bucket-278ca8d.s3-website-us-east-1.amazonaws.com](http://my-bucket-278ca8d.s3-website-us-east-1.amazonaws.com)
 
 
@@ -48,6 +87,8 @@ test url : [http://my-bucket-278ca8d.s3-website-us-east-1.amazonaws.com](http://
 Build and publish a Docker Container to a private Elastic Container Registry and spin up a load-balanced Amazon Elastic Container Service Fargate service.
 
 ```zsh
+$ pulumi stack
+
     Type                                          Name                        Status       Info
      pulumi:pulumi:Stack                           lv.2-dev                    running..    read aws:ec2:Subnet default-vpc-public-0
      ├─ awsx:x:ecs:FargateTaskDefinition           nginx                                    0664b7821b60: Pushed
@@ -92,8 +133,9 @@ server = aws.ec2.Instance('webserver-www',
     ami=ami.id)
 ```
 
-### Pulumi stack
 ```zsh
+$ pulumi stack
+
 Current stack is dev:
     Owner: adldotori
     Last updated: 12 minutes ago (2021-12-12 23:14:36.700443 +0900 KST)
